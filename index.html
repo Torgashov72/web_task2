@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Задание 2 — HTTP-запросы</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 20px auto; padding: 20px; }
+    h1 { text-align: center; margin-bottom: 30px; }
+    .task { margin: 30px 0; border: 1px solid #ddd; padding: 15px; }
+    .task h2 { margin-bottom: 10px; color: #2c3e50; }
+    img { max-width: 100%; border: 1px solid #ccc; margin: 10px 0; }
+    pre { background: #f5f5f5; padding: 10px; border-radius: 3px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>Задание 2: Ручные HTTP-запросы</h1>
+  
+  <div class="task">
+    <h2>Задание 1: GET / (HTTP/1.0)</h2>
+    <pre>GET /задание_2/ HTTP/1.0
+Host: u82364.kubsu-dev.ru</pre>
+    <img src="1.png" alt="Задание 1">
+  </div>
+
+  <div class="task">
+    <h2>Задание 2: GET /index.php (HTTP/1.1)</h2>
+    <pre>GET /задание_2/files/index.php HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Connection: close</pre>
+    <img src="2.png" alt="Задание 2">
+  </div>
+
+  <div class="task">
+    <h2>Задание 3: Размер файла (HEAD)</h2>
+    <pre>HEAD /задание_2/files/file.tar.gz HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Connection: close</pre>
+    <img src="3.png" alt="Задание 3">
+  </div>
+
+  <div class="task">
+    <h2>Задание 4: Медиатип изображения</h2>
+    <pre>HEAD /задание_2/files/image.png HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Connection: close</pre>
+    <img src="4.png" alt="Задание 4">
+  </div>
+
+  <div class="task">
+    <h2>Задание 5: Отправка комментария (POST)</h2>
+    <pre>POST /задание_2/files/index.php HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 27
+Connection: close
+
+comment=Привет+от+студента</pre>
+    <img src="5.png" alt="Задание 5">
+  </div>
+
+  <div class="task">
+    <h2>Задание 6: Первые 100 байт (Range)</h2>
+    <pre>GET /задание_2/files/file.tar.gz HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Range: bytes=0-99
+Connection: close</pre>
+    <img src="6.png" alt="Задание 6">
+  </div>
+
+  <div class="task">
+    <h2>Задание 7: Кодировка index.php</h2>
+    <pre>HEAD /задание_2/files/index.php HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Connection: close</pre>
+    <img src="7.png" alt="Задание 7">
+  </div>
+
+  <div class="git-section">
+    <h2>Использование Git в работе</h2>
+    <p>В ходе выполнения задания использовалась система контроля версий Git для управления файлами и синхронизации с сервером. Основные команды:</p>
+    
+    <h3>Команда git clone</h3>
+    <p>Для первоначального клонирования репозитория с сервера на локальный компьютер использовалась команда:</p>
+    <pre>git clone u82364@kubsu-dev.ru:~/www/задание_2</pre>
+    <p>Это позволило создать локальную копию проекта для работы.</p>
+    
+    <h3>Команда git pull</h3>
+    <p>Для обновления локальной копии репозитория с сервера использовалась команда:</p>
+    <pre>git pull origin master</pre>
+    <p>Это обеспечивало синхронизацию с последними изменениями, внесенными в репозиторий.</p>
+    
+    <h3>Команда git push</h3>
+    <p>Для отправки изменений с локального компьютера на сервер использовалась команда:</p>
+    <pre>git push origin master</pre>
+    <p>Это позволило сохранить результаты работы на сервере и сделать их доступными через веб-интерфейс.</p>
+    
+    <p>Использование Git обеспечило надежное управление версиями файлов и упростило процесс разработки и тестирования. Система контроля версий позволила отслеживать все изменения, вносить исправления и возвращаться к предыдущим версиям при необходимости.</p>
+  </div>
+</body>
+</html>
