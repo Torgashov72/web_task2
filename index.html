@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 2 — HTTP-запросы</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      color: #000000;
+      line-height: 1.5;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 16px;
+    }
+    .info-box {
+      background-color: #f5f5f5;
+      padding: 15px;
+      margin: 20px 0;
+      border-left: 3px solid #ccc;
+    }
+    .info-box h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    .screenshot {
+      margin: 30px 0;
+      padding: 20px;
+      border: 1px solid #ddd;
+    }
+    .screenshot h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+      color: #333;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+      margin: 15px auto;
+      border: 1px solid #ddd;
+    }
+    code {
+      background-color: #f1f1f1;
+      padding: 2px 4px;
+      font-family: monospace;
+      color: #d00;
+    }
+    .git-section {
+      background-color: #f9f9f9;
+      padding: 20px;
+      margin: 30px 0;
+      border: 1px solid #ddd;
+    }
+    .git-section h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+    .git-section ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+    .git-section li {
+      margin: 8px 0;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 3px;
+      overflow-x: auto;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Лабораторная работа №2</h1>
+  <p class="subtitle">Курс: Сетевые технологии | HTTP-протокол</p>
+
+  <!-- Задание 0 -->
+  <div class="info-box">
+    <h3>Задание 0: Подготовка файлов</h3>
+    <p>
+      Файлы (index.php, file.tar.gz, image.png) 
+      загружены в репозиторий GitHub, после чего размещены на учебном веб-сервере 
+      в каталоге /www/web_task2.
+    </p>
+    <p>
+      Доступность файлов проверена в браузере по адресу: 
+      <strong>http://u82364.kubsu-dev.ru/web_task2/</strong>
+    </p>
+  </div>
+
+  <!-- Задание 1 -->
+  <div class="screenshot">
+    <h2>Задание 1: GET главная страница (HTTP/1.0)</h2>
+    <p>
+      Выполнить GET-запрос к главной странице сервера с использованием протокола HTTP 1.0. 
+      Этот протокол не поддерживает постоянные соединения — после каждого запроса соединение закрывается.
+    </p>
+    <pre>GET /web_task2/ HTTP/1.0
+Host: u82364.kubsu-dev.ru</pre>
+    <img src="1.png" alt="Задание 1">
+  </div>
+
+  <!-- Задание 2 -->
+  <div class="screenshot">
+    <h2>Задание 2: GET index.php (HTTP/1.1)</h2>
+    <p>
+      Получение страницы index.php методом GET (протокол HTTP/1.1). 
+      В отличие от HTTP 1.0, этот протокол поддерживает постоянные соединения.
+    </p>
+    <pre>GET /web_task2/files/index.php HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Connection: close</pre>
+    <img src="2.png" alt="Задание 2">
+  </div>
+
+  <!-- Задание 3 -->
+  <div class="screenshot">
+    <h2>Задание 3: Размер файла file.tar.gz (HEAD)</h2>
+    <p>
+      Определение размера файла file.tar.gz без скачивания (метод HEAD). 
+      HEAD запрашивает только заголовки ответа без тела, что позволяет получить 
+      метаинформацию о файле без его загрузки.
+    </p>
+    <pre>HEAD /web_task2/files/file.tar.gz HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Connection: close</pre>
+    <img src="3.png" alt="Задание 3">
+  </div>
+
+  <!-- Задание 4 -->
+  <div class="screenshot">
+    <h2>Задание 4: Медиатип image.png (HEAD)</h2>
+    <p>
+      Определение типа содержимого (медиатипа) файла image.png (метод HEAD). 
+      Медиатип (MIME-type) определяется из заголовка Content-Type.
+    </p>
+    <pre>HEAD /web_task2/files/image.png HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Connection: close</pre>
+    <img src="4.png" alt="Задание 4">
+  </div>
+
+  <!-- Задание 5 -->
+  <div class="screenshot">
+    <h2>Задание 5: Отправка комментария (POST) — 2 балла!</h2>
+    <p>
+      Отправка комментария на сервер по адресу /index.php (метод POST). 
+      POST передает данные в теле запроса, что требует указания заголовков 
+      Content-Type и Content-Length.
+    </p>
+    <pre>POST /web_task2/files/index.php HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 31
+Connection: close
+
+comment=Test+comment+from+student</pre>
+    <img src="5.png" alt="Задание 5">
+  </div>
+
+  <!-- Задание 6 -->
+  <div class="screenshot">
+    <h2>Задание 6: Первые 100 байт (Range)</h2>
+    <p>
+      Получение первых 100 байт файла file.tar.gz (заголовок Range). 
+      Это позволяет получить только указанный диапазон байт, не скачивая весь файл.
+    </p>
+    <pre>GET /web_task2/files/file.tar.gz HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Range: bytes=0-99
+Connection: close</pre>
+    <img src="6.png" alt="Задание 6">
+  </div>
+
+  <!-- Задание 7 -->
+  <div class="screenshot">
+    <h2>Задание 7: Кодировка index.php (HEAD)</h2>
+    <p>
+      Определение кодировки страницы index.php (метод HEAD). 
+      Кодировка указывается в заголовке Content-Type.
+    </p>
+    <pre>HEAD /web_task2/files/index.php HTTP/1.1
+Host: u82364.kubsu-dev.ru
+Connection: close</pre>
+    <img src="7.png" alt="Задание 7">
+  </div>
+
+  <!-- Git раздел -->
+  <div class="git-section">
+    <h2>Использование Git в работе</h2>
+    <p>
+      В ходе выполнения задания использовалась система контроля версий Git для управления 
+      файлами и синхронизации с сервером. Основные команды:
+    </p>
+    
+    <h3>Команда git init</h3>
+    <pre>git init</pre>
+    <p>Инициализация локального репозитория в текущей директории.</p>
+    
+    <h3>Команда git add</h3>
+    <pre>git add .</pre>
+    <p>Добавление всех файлов в индекс (стадию подготовки коммита).</p>
+    
+    <h3>Команда git commit</h3>
+    <pre>git commit -m "Задание 2: HTTP-запросы + скриншоты"</pre>
+    <p>Создание коммита с описанием изменений.</p>
+    
+    <h3>Команда git clone</h3>
+    <pre>git clone https://github.com/ваш_логин/web_task2.git</pre>
+    <p>Клонирование репозитория с GitHub на локальный компьютер.</p>
+    
+    <h3>Команда git pull</h3>
+    <pre>git pull origin master</pre>
+    <p>Обновление локальной копии репозитория с сервера.</p>
+    
+    <h3>Команда git push</h3>
+    <pre>git push origin master</pre>
+    <p>Отправка изменений с локального компьютера на удалённый репозиторий.</p>
+    
+    <h3>Команда git remote add</h3>
+    <pre>git remote add origin https://github.com/ваш_логин/web_task2.git</pre>
+    <p>Настройка соединения с удалённым репозиторием.</p>
+    
+    <h3>Команда git status</h3>
+    <pre>git status</pre>
+    <p>Проверка состояния репозитория (изменённые, новые, удалённые файлы).</p>
+    
+    <p style="margin-top: 20px;">
+      Все файлы загружены в репозиторий GitHub и размещены на учебном веб-сервере 
+      в каталоге /www/web_task2.
+    </p>
+  </div>
+</body>
+</html>
